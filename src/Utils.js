@@ -18,4 +18,15 @@ function sortObjectArray(array, key, order = 'asc') {
   }
 }
 
-module.exports = { toIntArray, sortIntArray, sortObjectArray }
+function findCommonChar(str1, str2, str3 = '') {
+  let commonChar = ''
+  for (let i = 0; i < str1.length; i++) {
+    let char = str1[i]
+    if (str2.includes(char) && (str3 ? str3.includes(char) : true)) {
+      commonChar = char
+    }
+  }
+  return commonChar
+}
+
+module.exports = { toIntArray, sortIntArray, sortObjectArray, findCommonChar }
