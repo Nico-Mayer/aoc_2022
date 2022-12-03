@@ -26,9 +26,7 @@ function getP1Solution(line) {
 
 function getValue(item) {
   let alhabet = 'abcdefghijklmnopqrstuvwxyz'
-  if (item === item.toUpperCase()) {
+  if (item === item.toUpperCase())
     return alhabet.toUpperCase().indexOf(item) + 27
-  } else {
-    return alhabet.indexOf(item) + 1
-  }
+  else return alhabet.indexOf(item) + 1
 }
