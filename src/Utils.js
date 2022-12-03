@@ -2,6 +2,14 @@ function toIntArray(array) {
   return array.map((item) => parseInt(item))
 }
 
+function sliceIntoChunks(array, chunkSize) {
+  let chunks = []
+  for (let i = 0; i < array.length; i += chunkSize) {
+    chunks.push(array.slice(i, i + chunkSize))
+  }
+  return chunks
+}
+
 function sortIntArray(array, order = 'asc') {
   if (order === 'asc') {
     return array.sort((a, b) => a - b)
@@ -9,8 +17,7 @@ function sortIntArray(array, order = 'asc') {
     return array.sort((a, b) => b - a)
   }
 }
-function sortStringArray(array, order = 'asc') {
-  // Sorts an array of strings by length
+function sortStringArrayByLength(array, order = 'asc') {
   if (order === 'asc') {
     return array.sort((a, b) => a.length - b.length)
   } else if (order === 'desc') {
@@ -37,4 +44,11 @@ function findCommonChars(str1, str2, str3 = '') {
   return commonChar
 }
 
-module.exports = { toIntArray, sortIntArray, sortObjectArray, findCommonChars }
+module.exports = {
+  toIntArray,
+  sortIntArray,
+  sortObjectArray,
+  findCommonChars,
+  sortStringArrayByLength,
+  sliceIntoChunks,
+}
