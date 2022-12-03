@@ -9,6 +9,14 @@ function sortIntArray(array, order = 'asc') {
     return array.sort((a, b) => b - a)
   }
 }
+function sortStringArray(array, order = 'asc') {
+  // Sorts an array of strings by length
+  if (order === 'asc') {
+    return array.sort((a, b) => a.length - b.length)
+  } else if (order === 'desc') {
+    return array.sort((a, b) => b.length - a.length)
+  }
+}
 
 function sortObjectArray(array, key, order = 'asc') {
   if (order === 'asc') {
@@ -18,15 +26,15 @@ function sortObjectArray(array, key, order = 'asc') {
   }
 }
 
-function findCommonChar(str1, str2, str3 = '') {
-  let commonChar = ''
+function findCommonChars(str1, str2, str3 = '') {
+  let commonChar = []
   for (let i = 0; i < str1.length; i++) {
     let char = str1[i]
     if (str2.includes(char) && (str3 ? str3.includes(char) : true)) {
-      commonChar = char
+      commonChar = [...commonChar, char]
     }
   }
   return commonChar
 }
 
-module.exports = { toIntArray, sortIntArray, sortObjectArray, findCommonChar }
+module.exports = { toIntArray, sortIntArray, sortObjectArray, findCommonChars }

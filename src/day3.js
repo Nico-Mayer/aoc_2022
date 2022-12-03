@@ -1,4 +1,4 @@
-const { findCommonChar } = require('./Utils.js')
+const { findCommonChars } = require('./Utils.js')
 const { readFileSync } = require('fs')
 const input = readFileSync('../resources/day3/input.txt', 'utf8').split(/\r?\n/)
 
@@ -15,7 +15,7 @@ function getP1Solution(line) {
   let mid = line.length / 2
   let rucksack1 = line.substring(0, mid)
   let rucksack2 = line.substring(mid, line.length)
-  let commonItem = findCommonChar(rucksack1, rucksack2)
+  let commonItem = findCommonChars(rucksack1, rucksack2)[0]
   solution.p1 += getValue(commonItem)
 }
 function createGroupsArr(line, index) {
@@ -35,7 +35,7 @@ function getValue(item) {
 }
 // Solution P2
 for (let i = 0; i < groups.length; i++) {
-  let item = findCommonChar(groups[i][0], groups[i][1], groups[i][2])
+  let item = findCommonChars(groups[i][0], groups[i][1], groups[i][2])[0]
   solution.p2 += getValue(item)
 }
 
