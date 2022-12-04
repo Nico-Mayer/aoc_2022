@@ -5,11 +5,14 @@ const input = readFileSync('./input.txt', 'utf8').split(/\r?\n/)
 let solution = { p1: 0, p2: 0 }
 
 input.map((line) => {
-  let [num1, num2] = line.split(',')
-  let elf1 = getRange(num1)
-  let elf2 = getRange(num2)
-  if (containsAll(elf1, elf2) || containsAll(elf2, elf1)) solution.p1++
-  if (containsSingle(elf1, elf2)) solution.p2++
+  let [elf1, elf2] = line.split(',')
+  let itemsElf1 = getRange(elf1)
+  let itemsElf2 = getRange(elf2)
+
+  if (containsAll(itemsElf1, itemsElf2) || containsAll(itemsElf2, itemsElf1)) {
+    solution.p1++
+  }
+  if (containsSingle(itemsElf1, itemsElf2)) solution.p2++
 })
 
 console.log(solution)
