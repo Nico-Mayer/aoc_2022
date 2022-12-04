@@ -16,8 +16,8 @@ console.log(solution)
 
 function getRange(range) {
   let res = []
-  let numbers = range.split('-')
-  for (let i = parseInt(numbers[0]); i <= parseInt(numbers[1]); i++) {
+  let [start, end] = range.split('-')
+  for (let i = parseInt(start); i <= parseInt(end); i++) {
     res.push(i)
   }
   return res
