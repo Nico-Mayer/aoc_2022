@@ -1,39 +1,18 @@
 const { readFileSync } = require('fs')
+const { containsAll, containsSingle } = require('./Utils')
 const input = readFileSync('../resources/day4/input.txt', 'utf8').split(/\r?\n/)
 
-let pairs = []
 let solution = { p1: 0, p2: 0 }
 
 input.map((line) => {
-  let numbers = line.split(',')
-  pairs = [
-    {
-      elf1: getRange(numbers[0]),
-      elf2: getRange(numbers[1]),
-      fullyContains: fullyContains(getRange(numbers[0]), getRange(numbers[1])),
-      overlapping: contains(getRange(numbers[0]), getRange(numbers[1])),
-    },
-    ...pairs,
-  ]
-})
-
-pairs.map((pair) => {
-  if (pair.fullyContains) solution.p1 += 1
-  if (pair.overlapping) solution.p2 += 1
+  let [num1, num2] = line.split(',')
+  let elf1 = getRange(num1)
+  let elf2 = getRange(num2)
+  if (containsAll(elf1, elf2) || containsAll(elf2, elf1)) solution.p1++
+  if (containsSingle(elf1, elf2)) solution.p2++
 })
 
 console.log(solution)
-
-function fullyContains(arr1, arr2) {
-  return (
-    arr2.every((item) => arr1.includes(item)) ||
-    arr1.every((item) => arr2.includes(item))
-  )
-}
-
-function contains(arr1, arr2) {
-  return arr2.some((item) => arr1.includes(item))
-}
 
 function getRange(range) {
   let res = []

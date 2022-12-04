@@ -44,6 +44,14 @@ function findCommonChars(str1, str2, str3 = '') {
   return commonChar
 }
 
+function containsAll(arr1, arr2) {
+  return arr2.every((item) => arr1.includes(item))
+}
+
+function containsSingle(arr1, arr2) {
+  return arr2.some((item) => arr1.includes(item))
+}
+
 module.exports = {
   toIntArray,
   sortIntArray,
@@ -51,4 +59,6 @@ module.exports = {
   findCommonChars,
   sortStringArrayByLength,
   sliceIntoChunks,
+  containsAll,
+  containsSingle,
 }
