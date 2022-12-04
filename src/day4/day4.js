@@ -1,6 +1,6 @@
 const { readFileSync } = require('fs')
-const { containsAll, containsSingle } = require('./Utils')
-const input = readFileSync('../resources/day4/input.txt', 'utf8').split(/\r?\n/)
+const { containsAll, containsSingle } = require('../Utils')
+const input = readFileSync('./input.txt', 'utf8').split(/\r?\n/)
 
 let solution = { p1: 0, p2: 0 }
 

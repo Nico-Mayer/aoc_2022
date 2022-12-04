@@ -1,6 +1,6 @@
-const { sortObjectArray } = require('./Utils.js')
+const { sortObjectArray } = require('../Utils.js')
 const { readFileSync } = require('fs')
-const input = readFileSync('../resources/day1/input.txt', 'utf8').split(/\r?\n/)
+const input = readFileSync('./input.txt', 'utf8').split(/\r?\n/)
 
 let calories = 0
 let elfs = []

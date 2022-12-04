@@ -1,6 +1,6 @@
-const { findCommonChars, sliceIntoChunks } = require('./Utils.js')
+const { findCommonChars, sliceIntoChunks } = require('../Utils.js')
 const { readFileSync } = require('fs')
-const input = readFileSync('../resources/day3/input.txt', 'utf8').split(/\r?\n/)
+const input = readFileSync('./input.txt', 'utf8').split(/\r?\n/)
 
 let solution = { p1: 0, p2: 0 }
 let groups = sliceIntoChunks(input, 3)
