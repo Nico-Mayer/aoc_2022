@@ -1,6 +1,5 @@
-const { findCommonChars, sliceIntoChunks } = require('../Utils.js')
-const { readFileSync } = require('fs')
-const input = readFileSync('./input.txt', 'utf8').split(/\r?\n/)
+const { findCommonChars, sliceIntoChunks, getInput } = require('../Utils.js')
+const input = getInput({ day: 3, sample: false })
 
 let solution = { p1: 0, p2: 0 }
 let groups = sliceIntoChunks(input, 3)

@@ -1,3 +1,5 @@
+const { readFileSync } = require('fs')
+
 function toIntArray(array) {
   return array.map((item) => parseInt(item))
 }
@@ -17,6 +19,7 @@ function sortIntArray(array, order = 'asc') {
     return array.sort((a, b) => b - a)
   }
 }
+
 function sortStringArrayByLength(array, order = 'asc') {
   if (order === 'asc') {
     return array.sort((a, b) => a.length - b.length)
@@ -52,6 +55,30 @@ function containsSingle(arr1, arr2) {
   return arr2.some((item) => arr1.includes(item))
 }
 
+function reverseString(str) {
+  return str.split('').reverse().join('')
+}
+
+function stringHasDuplicates(string) {
+  let hasDuplicate = string.split('').length !== new Set(string.split('')).size
+  return hasDuplicate ? true : false
+}
+
+function getInput({ day, sample }) {
+  const path = sample ? 'sample' : 'input'
+  let data
+  console.log(`Loading data for day ${day} Type: ${path}`)
+  console.log()
+  try {
+    data = readFileSync(`../resources/day${day}/${path}.txt`, 'utf8')
+  } catch (err) {
+    //console.log('Loaded from Source')
+    data = readFileSync(`../../resources/day${day}/${path}.txt`, 'utf8')
+  }
+
+  return data.split(/\r?\n/)
+}
+
 module.exports = {
   toIntArray,
   sortIntArray,
@@ -61,4 +88,7 @@ module.exports = {
   sliceIntoChunks,
   containsAll,
   containsSingle,
+  getInput,
+  reverseString,
+  stringHasDuplicates,
 }

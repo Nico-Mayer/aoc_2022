@@ -1,14 +1,13 @@
-const { readFileSync } = require('fs')
-const input = readFileSync('./input.txt', 'utf8').split(/\r?\n/)
+const { getInput } = require('../Utils.js')
+const input = getInput({ day: 2, sample: false })
 
-let scoreP1 = 0
-let scoreP2 = 0
+let solution = { p1: 0, p2: 0 }
 
 input.map((line) => {
   let you = line[2]
   let opp = line[0]
-  scoreP1 += result(you, opp, 1)
-  scoreP2 += result(you, opp, 2)
+  solution.p1 += result(you, opp, 1)
+  solution.p2 += result(you, opp, 2)
 })
 
 function result(you, opp, part) {
@@ -28,5 +27,4 @@ function result(you, opp, part) {
   }
 }
 
-console.log(scoreP1)
-console.log(scoreP2)
+console.log(solution)

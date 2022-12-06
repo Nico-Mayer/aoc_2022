@@ -1,6 +1,6 @@
-const { toIntArray, sortIntArray, sortObjectArray } = require('../Utils.js')
-const { readFileSync } = require('fs')
-const sample = true
-const inputPath = './' + (sample ? 'sample' : 'input') + '.txt'
+const { getInput } = require('../Utils.js')
 
-const input = readFileSync(inputPath, 'utf8').split(/\r?\n/)
+const input = getInput({ day: X, sample: true })
+let solution = { p1: 0, p2: 0 }
+
+console.log(input)
