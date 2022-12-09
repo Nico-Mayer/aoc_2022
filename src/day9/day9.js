@@ -10,19 +10,8 @@ class Point {
 		this.y = y
 	}
 }
-
-let rope = [
-	new Point(0, 0),
-	new Point(0, 0),
-	new Point(0, 0),
-	new Point(0, 0),
-	new Point(0, 0),
-	new Point(0, 0),
-	new Point(0, 0),
-	new Point(0, 0),
-	new Point(0, 0),
-	new Point(0, 0),
-]
+let ropeLength = 2
+let rope = Array.from({ length: ropeLength }, () => new Point(0, 0))
 let visited = new Set([JSON.stringify(rope[0])])
 
 steps.map((step) => {
