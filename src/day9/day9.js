@@ -7,17 +7,8 @@ let steps = input.map((line) => {
 })
 let visited = new Set(['0,0'])
 
-let knots = [
-	[0, 0],
-	[0, 0],
-	[0, 0],
-	[0, 0],
-	[0, 0],
-	[0, 0],
-	[0, 0],
-	[0, 0],
-	[0, 0],
-]
+let [hx, hy] = [0, 0]
+let [tx, ty] = [0, 0]
 
 function touching(x1, y1, x2, y2) {
 	return Math.abs(x1 - x2) <= 1 && Math.abs(y1 - y2) <= 1
@@ -26,9 +17,10 @@ function touching(x1, y1, x2, y2) {
 function moveHead(direction) {
 	switch (direction) {
 		case 'U':
-			knots[0][1]++
+			hy++
 			break
 		case 'R':
+			hx++
 			break
 		case 'D':
 			hy--
