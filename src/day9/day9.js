@@ -10,7 +10,8 @@ class Point {
 		this.y = y
 	}
 }
-let ropeLength = 2
+
+let ropeLength = 10
 let rope = Array.from({ length: ropeLength }, () => new Point(0, 0))
 let visited = new Set([JSON.stringify(rope[0])])
 
@@ -30,7 +31,6 @@ function touching(pointA, pointB) {
 
 function move(direction) {
 	let head = rope[0]
-	let tail = rope[1]
 
 	if (direction === 'U') head.y++
 	else if (direction === 'D') head.y--
@@ -42,41 +42,20 @@ function move(direction) {
 		let tail = rope[i]
 		follow(head, tail)
 	}
-
+	// Add the Last Point to the Set
 	visited.add(JSON.stringify(rope[rope.length - 1]))
 }
 
 function follow(head, tail) {
-	let inSameCol = head.x === tail.x
-	let inSameRow = head.y === tail.y
 	if (touching(head, tail)) return
 
-	if (inSameCol) {
-		if (head.y > tail.y) {
-			tail.y++
-		} else {
-			tail.y--
-		}
-	} else if (inSameRow) {
-		if (head.x > tail.x) {
-			tail.x++
-		} else {
-			tail.x--
-		}
+	if (head.x === tail.x) {
+		tail.y += head.y > tail.y ? 1 : -1
+	} else if (head.y === tail.y) {
+		tail.x += head.x > tail.x ? 1 : -1
 	} else {
-		if (head.x < tail.x && head.y < tail.y) {
-			tail.x--
-			tail.y--
-		} else if (head.x > tail.x && head.y < tail.y) {
-			tail.x++
-			tail.y--
-		} else if (head.y > tail.y && head.x < tail.x) {
-			tail.y++
-			tail.x--
-		} else if (head.y > tail.y && head.x > tail.x) {
-			tail.y++
-			tail.x++
-		}
+		tail.x += head.x > tail.x ? 1 : -1
+		tail.y += head.y > tail.y ? 1 : -1
 	}
 }
 
