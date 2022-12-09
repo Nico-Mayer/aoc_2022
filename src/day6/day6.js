@@ -1,8 +1,7 @@
 const { getInput, stringHasDuplicates } = require('../Utils.js')
-
 const input = getInput({ day: 6, sample: false })[0]
-let solution = { i: 0, found: false }
 
+let solution = { i: 0, found: false }
 let bufferLength = 14
 let buffer = ''
 
