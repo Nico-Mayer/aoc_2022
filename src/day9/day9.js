@@ -1,13 +1,18 @@
 const { getInput } = require('../Utils.js')
-
 const input = getInput({ day: 9, sample: false })
 let steps = input.map((line) => {
 	return line.split(' ')
 })
 
-let [hx, hy] = [0, 0]
-let [tx, ty] = [0, 0]
-let visited = new Set(['0,0'])
+class Point {
+	constructor(x, y) {
+		this.x = x
+		this.y = y
+	}
+}
+
+let rope = [new Point(0, 0), new Point(0, 0)]
+let visited = new Set([JSON.stringify(rope[0])])
 
 steps.map((step) => {
 	let [direction, distance] = step
@@ -16,26 +21,29 @@ steps.map((step) => {
 	}
 })
 
-function touching(x1, y1, x2, y2) {
-	let xDiff = Math.abs(x1 - x2)
-	let yDiff = Math.abs(y1 - y2)
+function touching(pointA, pointB) {
+	let xDiff = Math.abs(pointA.x - pointB.x)
+	let yDiff = Math.abs(pointA.y - pointB.y)
 	if (yDiff > 1 || xDiff > 1) return false
 	return true
 }
 
 function move(direction) {
-	let [prevX, prevY] = [hx, hy]
+	let head = rope[0]
+	let tail = rope[1]
+	let [prevX, prevY] = [head.x, head.y]
 
-	if (direction === 'U') hy++
-	else if (direction === 'D') hy--
-	else if (direction === 'L') hx--
-	else if (direction === 'R') hx++
+	if (direction === 'U') head.y++
+	else if (direction === 'D') head.y--
+	else if (direction === 'L') head.x--
+	else if (direction === 'R') head.x++
 
-	if (!touching(hx, hy, tx, ty)) {
-		tx = prevX
-		ty = prevY
-		visited.add(`${tx},${ty}`)
+	if (!touching(head, tail)) {
+		tail.x = prevX
+		tail.y = prevY
 	}
+
+	visited.add(JSON.stringify(rope[rope.length - 1]))
 }
 
 console.log(visited.size)
