@@ -1,39 +1,55 @@
-const { getInput } = require('../Utils.js')
+const { getInput, replaceAt } = require('../Utils.js')
+const input = getInput({ day: 10, sample: false })
 
-const input = getInput({ day: 10, sample: true })
-let cycle = 0
 let X = 1
-
+let cycle = 0
+let CRT = Array(6).fill(new Array(40).join(' '))
 let interestingCycles = [20, 60, 100, 140, 180, 220]
 let solution = 0
 
-input.map((line) => {
-	const instruction = line.split(' ')
+for (let line of input) {
+	let op = line.split(' ')
 
-	if (instruction[0] === 'noop') {
-		cycle += 1
+	if (op[0] === 'noop') {
+		runCycle()
+	} else if (op[0] === 'addx') {
+		let value = parseInt(op[1])
+		runCycle()
+		runCycle()
 
-		if (interestingCycles.includes(cycle)) {
-			solution += calcSignalStrength(cycle, X)
-		}
-	} else if (instruction[0] === 'addx') {
-		let value = parseInt(instruction[1])
 		X += value
-		cycle += 1
-
-		if (interestingCycles.includes(cycle)) {
-			solution += calcSignalStrength(cycle, X - value)
-		}
-
-		cycle += 1
-		if (interestingCycles.includes(cycle)) {
-			solution += calcSignalStrength(cycle, X - value)
-		}
 	}
-})
+}
+
+function runCycle() {
+	updateCRT(X, cycle)
+	cycle += 1
+	if (interestingCycles.includes(cycle)) {
+		solution += calcSignalStrength(cycle, X)
+	}
+}
+
+function updateCRT(spriteIndex, cycle) {
+	let row
+
+	if (cycle < 40) row = 0
+	else if (cycle < 80) row = 1
+	else if (cycle < 120) row = 2
+	else if (cycle < 160) row = 3
+	else if (cycle < 200) row = 4
+	else if (cycle < 240) row = 5
+
+	let pixelIndex = cycle % 40
+	let sprite = [spriteIndex - 1, spriteIndex, spriteIndex + 1]
+
+	if (sprite.includes(pixelIndex)) {
+		CRT[row] = replaceAt(CRT[row], pixelIndex, '#')
+	}
+}
 
 function calcSignalStrength(cycle, X) {
 	return cycle * X
 }
 
-console.table(solution)
+console.table(CRT)
+console.log(solution)
