@@ -69,6 +69,12 @@ function replaceAt(string, index, replace) {
 	return string.substring(0, index) + replace + string.substring(index + 1)
 }
 
+function split(str, index) {
+	const result = [str.slice(0, index), str.slice(index)]
+
+	return result
+}
+
 function getInput({ day, sample }) {
 	const path = sample ? 'sample' : 'input'
 	let data
@@ -98,4 +104,5 @@ module.exports = {
 	reverseString,
 	stringHasDuplicates,
 	replaceAt,
+	split,
 }
