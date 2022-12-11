@@ -6,14 +6,11 @@ let bufferLength = 14
 let buffer = ''
 
 for (let i = 0; i < input.length; i++) {
+	if (solution.found) break
 	buffer += input[i]
-	if (buffer.length > bufferLength) {
-		buffer = buffer.substring(1)
-	}
-	if (buffer.length === bufferLength && !solution.found) {
-		if (!stringHasDuplicates(buffer)) {
-			solution = { i: i + 1, found: true }
-		}
+	if (buffer.length > bufferLength) buffer = buffer.substring(1)
+	if (buffer.length === bufferLength) {
+		if (!stringHasDuplicates(buffer)) solution = { i: i + 1, found: true }
 	}
 }
 
