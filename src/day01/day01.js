@@ -5,11 +5,11 @@ let elfs = []
 let elfIndex = 0
 
 input.map((line) => {
-  if (line === '') {
-    elfs = [{ elfIndex: elfIndex, calories: calories }, ...elfs]
-    calories = 0
-    elfIndex += 1
-  } else calories += parseInt(line)
+	if (line === '') {
+		elfs = [{ elfIndex: elfIndex, calories: calories }, ...elfs]
+		calories = 0
+		elfIndex += 1
+	} else calories += parseInt(line)
 })
 
 // Part 1

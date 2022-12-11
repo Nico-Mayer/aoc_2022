@@ -43,13 +43,12 @@ function updateCRT(spriteIndex, cycle) {
 	let sprite = [spriteIndex - 1, spriteIndex, spriteIndex + 1]
 
 	if (sprite.includes(pixelIndex)) {
-		CRT[row] = replaceAt(CRT[row], pixelIndex, '#')
+		CRT[row] = replaceAt(CRT[row], pixelIndex, '▓')
 	}
 }
 
 function calcSignalStrength(cycle, X) {
 	return cycle * X
 }
-
+console.log('Signal Score: ' + solution)
 console.table(CRT)
-console.log(solution)

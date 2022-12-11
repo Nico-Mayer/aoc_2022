@@ -72,6 +72,7 @@ function replaceAt(string, index, replace) {
 function getInput({ day, sample }) {
 	const path = sample ? 'sample' : 'input'
 	let data
+	day < 10 ? (day = '0' + day) : day
 	console.log(`Loading data for day ${day} Type: ${path}`)
 	console.log()
 	try {
