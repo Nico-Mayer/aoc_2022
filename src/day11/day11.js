@@ -11,8 +11,8 @@ class Monkey {
 		this.items = toIntArray(dna[1].slice(14).split(','))
 		this.operation = dna[2].slice(17)
 		this.test = parseInt(dna[3].slice(16))
-		this.monkeyIfTrue = parseInt(dna[4].slice(-1))
-		this.monkeyIfFalse = parseInt(dna[5].slice(-1))
+		this.receiverID = parseInt(dna[4].slice(-1))
+		this.receiverID2 = parseInt(dna[5].slice(-1))
 		this.inspectedItems = 0
 	}
 
@@ -32,8 +32,8 @@ class Monkey {
 			this.items[0] = Math.floor(this.items[0] / 3)
 		}
 
-		if (this.items[0] % this.test === 0) return this.monkeyIfTrue
-		else return this.monkeyIfFalse
+		if (this.items[0] % this.test === 0) return this.receiverID
+		else return this.receiverID2
 	}
 	throwItem() {
 		let item = this.items[0]
