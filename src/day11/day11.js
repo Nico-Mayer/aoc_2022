@@ -1,10 +1,10 @@
 const { getInput, sliceIntoChunks, split, toIntArray } = require('../Utils.js')
 const input = getInput({ day: 11, sample: false })
+const p2 = false
 
-let rounds = 20
+let rounds = p2 ? 10000 : 20
 let monkeys = []
 let superModulo = 1
-let p2 = false
 
 class Monkey {
 	constructor(dna) {
